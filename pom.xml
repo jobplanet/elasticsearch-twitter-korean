@@ -22,9 +22,16 @@
 
     <properties>
         <elasticsearch.version>1.4.4</elasticsearch.version>
+        <junit.version>4.11</junit.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
