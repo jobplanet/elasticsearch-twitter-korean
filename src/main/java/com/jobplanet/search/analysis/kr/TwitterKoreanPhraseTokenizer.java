@@ -1,18 +1,22 @@
 package com.jobplanet.search.analysis.kr;
 
 import com.twitter.penguin.korean.TwitterKoreanProcessorJava;
+import com.twitter.penguin.korean.phrase_extractor.KoreanPhraseExtractor;
 import com.twitter.penguin.korean.tokenizer.KoreanTokenizer;
 import scala.collection.Seq;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 /**
- * Created by hosang on 2015. 11. 5..
+ * Created by hosang on 2015. 11. 9..
  */
-public final class TwitterKoreanTokenizer extends TwitterKoreanTokenizerBase {
+public final class TwitterKoreanPhraseTokenizer extends TwitterKoreanTokenizerBase {
 
-    public TwitterKoreanTokenizer(Reader input) { super(input);}
+    private List<KoreanPhraseExtractor.KoreanPhrase> tokenList;
+
+    public TwitterKoreanPhraseTokenizer(Reader input) { super(input);}
 
     @Override
     public final boolean incrementToken() throws IOException {
@@ -31,7 +35,7 @@ public final class TwitterKoreanTokenizer extends TwitterKoreanTokenizerBase {
             }
             Seq<KoreanTokenizer.KoreanToken> tokens = TwitterKoreanProcessorJava.tokenize(out);
             Seq<KoreanTokenizer.KoreanToken> stemmed = TwitterKoreanProcessorJava.stem(tokens);
-            tokenList = TwitterKoreanProcessorJava.tokensToJavaKoreanTokenList(stemmed);
+            tokenList = TwitterKoreanProcessorJava.extractPhrases(stemmed, true, false);
             isFirst = false;
         }
 
@@ -45,4 +49,17 @@ public final class TwitterKoreanTokenizer extends TwitterKoreanTokenizerBase {
         return true;
     }
 
+    /**
+     * Set token attributes such as term, start offset, end offset, type.
+     * @param token
+     */
+    private void setAttributes(KoreanPhraseExtractor.KoreanPhrase token){
+
+        char[] buf = token.text().toCharArray();
+        termAtt.copyBuffer(buf, 0, buf.length);
+        offset = token.offset();
+        offsetAtt.setOffset(correctOffset(offset), finalOffset = (correctOffset(offset) + token.length()));
+        typeAtt.setType(token.pos().toString());
+
+    }
 }

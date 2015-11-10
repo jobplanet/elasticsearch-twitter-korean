@@ -39,7 +39,10 @@ public class TwitterKoreanTokenizerTest extends AnalyzerTestUtil {
         CharTermAttribute charTermAtt = tokenizer.getAttribute(CharTermAttribute.class);
         OffsetAttribute offSetAtt = tokenizer.getAttribute(OffsetAttribute.class);
 
+        int expected_token_count = 6;
+        int observed_token_count = 0;
         while(tokenizer.incrementToken()) {
+            observed_token_count++;
             TestToken t = getToken(charTermAtt.toString(), offSetAtt.startOffset(), offSetAtt.endOffset());
 
             System.out.println("termAtt.term() : " + charTermAtt.toString());
@@ -48,6 +51,8 @@ public class TwitterKoreanTokenizerTest extends AnalyzerTestUtil {
 
             Assert.assertTrue(tokenizedToken.contains(t));
         }
+
+        Assert.assertEquals(expected_token_count, observed_token_count);
     }
 
 

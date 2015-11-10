@@ -1,7 +1,7 @@
 package org.elasticsearch.index.analysis;
 
 /**
- * Created by hosang on 2015. 11. 5..
+ * @author Hosang Jeon, 2011.11.5 jhsbeat@gmail.com
  */
 public class TwitterKoreanAnalysisBinderProcessor extends AnalysisModule.AnalysisBinderProcessor {
 
@@ -13,6 +13,8 @@ public class TwitterKoreanAnalysisBinderProcessor extends AnalysisModule.Analysi
     @Override
     public void processTokenizers(TokenizersBindings tokenizersBindings) {
         tokenizersBindings.processTokenizer("twitter_korean_tokenizer", TwitterKoreanTokenizerFactory.class);
+        tokenizersBindings.processTokenizer("twitter_korean_phrase_tokenizer", TwitterKoreanPhraseTokenizerFactory.class);
     }
+
 
 }
