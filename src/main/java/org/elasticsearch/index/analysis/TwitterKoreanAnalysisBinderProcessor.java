@@ -16,5 +16,9 @@ public class TwitterKoreanAnalysisBinderProcessor extends AnalysisModule.Analysi
         tokenizersBindings.processTokenizer("twitter_korean_phrase_tokenizer", TwitterKoreanPhraseTokenizerFactory.class);
     }
 
+    @Override
+    public void processTokenFilters(TokenFiltersBindings tokenFiltersBindings) {
+        tokenFiltersBindings.processTokenFilter("twitter_korean_stop_filter", TwitterKoreanStopFilterFactory.class);
+    }
 
 }

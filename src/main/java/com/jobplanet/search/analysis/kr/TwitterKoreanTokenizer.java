@@ -40,7 +40,7 @@ public final class TwitterKoreanTokenizer extends TwitterKoreanTokenizerBase {
                 out.append(buffer, 0, dataLen);
             }
 
-            Seq<KoreanTokenizer.KoreanToken> tokens = TwitterKoreanProcessorJava.tokenize(out);
+            Seq<KoreanTokenizer.KoreanToken> tokens = TwitterKoreanProcessorJava.tokenize(TwitterKoreanProcessorJava.normalize(out));
             Seq<KoreanTokenizer.KoreanToken> stemmed = TwitterKoreanProcessorJava.stem(tokens);
             tokenList = TwitterKoreanProcessorJava.tokensToJavaKoreanTokenList(stemmed);
             isFirst = false;

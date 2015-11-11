@@ -43,7 +43,7 @@ public final class TwitterKoreanPhraseTokenizer extends TwitterKoreanTokenizerBa
                 }
                 out.append(buffer, 0, dataLen);
             }
-            Seq<KoreanTokenizer.KoreanToken> tokens = TwitterKoreanProcessorJava.tokenize(out);
+            Seq<KoreanTokenizer.KoreanToken> tokens = TwitterKoreanProcessorJava.tokenize(TwitterKoreanProcessorJava.normalize(out));
             Seq<KoreanTokenizer.KoreanToken> stemmed = TwitterKoreanProcessorJava.stem(tokens);
             tokenList = TwitterKoreanProcessorJava.extractPhrases(stemmed, true, false);
             isFirst = false;
