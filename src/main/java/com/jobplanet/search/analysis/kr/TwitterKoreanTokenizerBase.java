@@ -22,17 +22,19 @@ public abstract class TwitterKoreanTokenizerBase extends Tokenizer {
     protected List<KoreanTokenJava> tokenList;
     protected int currentIndex = 0;
 
-    protected final CharTermAttribute termAtt = addAttribute(CharTermAttribute.class);
-    protected final OffsetAttribute offsetAtt = addAttribute(OffsetAttribute.class);
-    protected final TypeAttribute typeAtt = addAttribute(TypeAttribute.class);
-    protected final PositionIncrementAttribute positionAtt = addAttribute(PositionIncrementAttribute.class);
+    protected CharTermAttribute termAtt;
+    protected OffsetAttribute offsetAtt;
+    protected TypeAttribute typeAtt;
+    protected PositionIncrementAttribute positionAtt;
 
     public TwitterKoreanTokenizerBase(Reader input) { super(input);}
 
     @Override
-    public final void end() {
+    public final void end() throws IOException {
         // set final offset
+        clearAttributes();
         offsetAtt.setOffset(finalOffset, finalOffset);
+        if(positionAtt != null) { positionAtt.setPositionIncrement(0); }
     }
 
     @Override
@@ -40,7 +42,9 @@ public abstract class TwitterKoreanTokenizerBase extends Tokenizer {
         super.reset();
         offset = 0;
         finalOffset = 0;
-        isFirst = true; // make sure to isFirst!!
+        isFirst = true; // make sure to reset isFirst!!
+        tokenList = null;
+        currentIndex = 0;
     }
 
     /**
@@ -48,7 +52,6 @@ public abstract class TwitterKoreanTokenizerBase extends Tokenizer {
      * @param token
      */
     protected void setAttributes(KoreanTokenJava token){
-
         char[] buf = token.getText().toCharArray();
         termAtt.copyBuffer(buf, 0, buf.length);
         offset = token.getOffset();

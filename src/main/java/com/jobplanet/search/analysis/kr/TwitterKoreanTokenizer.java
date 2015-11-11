@@ -2,6 +2,10 @@ package com.jobplanet.search.analysis.kr;
 
 import com.twitter.penguin.korean.TwitterKoreanProcessorJava;
 import com.twitter.penguin.korean.tokenizer.KoreanTokenizer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
+import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
+import org.apache.lucene.analysis.tokenattributes.TypeAttribute;
 import scala.collection.Seq;
 
 import java.io.IOException;
@@ -12,7 +16,13 @@ import java.io.Reader;
  */
 public final class TwitterKoreanTokenizer extends TwitterKoreanTokenizerBase {
 
-    public TwitterKoreanTokenizer(Reader input) { super(input);}
+    public TwitterKoreanTokenizer(Reader input) {
+        super(input);
+        termAtt = addAttribute(CharTermAttribute.class);
+        offsetAtt = addAttribute(OffsetAttribute.class);
+        typeAtt = addAttribute(TypeAttribute.class);
+        positionAtt = addAttribute(PositionIncrementAttribute.class);
+    }
 
     @Override
     public final boolean incrementToken() throws IOException {
@@ -29,6 +39,7 @@ public final class TwitterKoreanTokenizer extends TwitterKoreanTokenizerBase {
                 }
                 out.append(buffer, 0, dataLen);
             }
+
             Seq<KoreanTokenizer.KoreanToken> tokens = TwitterKoreanProcessorJava.tokenize(out);
             Seq<KoreanTokenizer.KoreanToken> stemmed = TwitterKoreanProcessorJava.stem(tokens);
             tokenList = TwitterKoreanProcessorJava.tokensToJavaKoreanTokenList(stemmed);

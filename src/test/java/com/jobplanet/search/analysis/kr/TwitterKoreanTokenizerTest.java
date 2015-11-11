@@ -53,6 +53,7 @@ public class TwitterKoreanTokenizerTest extends AnalyzerTestUtil {
         }
 
         Assert.assertEquals(expected_token_count, observed_token_count);
+
     }
 
 

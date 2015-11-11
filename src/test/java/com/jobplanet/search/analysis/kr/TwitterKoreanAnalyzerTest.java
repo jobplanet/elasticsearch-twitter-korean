@@ -9,7 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.StringReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hosang on 2015. 11. 6..
@@ -25,6 +27,11 @@ public class TwitterKoreanAnalyzerTest extends AnalyzerTestUtil {
 
     @Test
     public void testCase1() throws Exception {
+
+        Map<String, String> customNounDictionaryMap = new HashMap<String, String>();
+        customNounDictionaryMap.put("고속도로", null);
+        customNounDictionaryMap.put("고속", null);
+        customNounDictionaryMap.put("도로", null);
 
         StringReader reader = new StringReader("소설은 사건을 미적으로 질서화하여");
 
