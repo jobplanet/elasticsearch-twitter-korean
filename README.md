@@ -24,6 +24,8 @@ To package as a jar with dependencies, run maven command with following goals.
 ```
 mvn clean package assembly:single
 # The output zip file will be generated in target/releases
+cd {elasticsearch home path}
+./bin/plugin --install elasticsearch-twitter-korean --url file:///{path_to_this_project}/elasticsearch-twitter-korean/target/releases/elasticsearch-twitter-korean-1.0-SNAPSHOT.zip
 ```
 
 
