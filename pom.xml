@@ -21,6 +21,7 @@
     </licenses>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <elasticsearch.version>2.3.2</elasticsearch.version>
         <junit.version>4.11</junit.version>
         <twitter.korean-text.version>4.4</twitter.korean-text.version>
