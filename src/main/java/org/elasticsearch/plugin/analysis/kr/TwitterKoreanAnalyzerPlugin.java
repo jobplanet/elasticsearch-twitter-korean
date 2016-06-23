@@ -3,12 +3,14 @@ package org.elasticsearch.plugin.analysis.kr;
 
 import org.elasticsearch.index.analysis.AnalysisModule;
 import org.elasticsearch.index.analysis.TwitterKoreanAnalysisBinderProcessor;
-import org.elasticsearch.plugins.AbstractPlugin;
+import org.elasticsearch.plugins.Plugin;
 
 /**
  * @author Hosang Jeon, 2011.11.5 jhsbeat@gmail.com
+ *
+ *
  */
-public class TwitterKoreanAnalyzerPlugin extends AbstractPlugin {
+public class TwitterKoreanAnalyzerPlugin extends Plugin {
 
     @Override
     public String name() {

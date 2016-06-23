@@ -21,8 +21,16 @@
     </licenses>
 
     <properties>
-        <elasticsearch.version>1.4.4</elasticsearch.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <elasticsearch.version>2.3.2</elasticsearch.version>
         <junit.version>4.11</junit.version>
+        <twitter.korean-text.version>4.4</twitter.korean-text.version>
+        <elasticsearch.plugin.classname>org.elasticsearch.plugin.analysis.kr.TwitterKoreanAnalyzerPlugin
+        </elasticsearch.plugin.classname>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+
+
     </properties>
 
     <dependencies>
@@ -36,12 +44,12 @@
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
             <version>${elasticsearch.version}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.twitter.penguin</groupId>
             <artifactId>korean-text</artifactId>
-            <version>4.1.6</version>
+            <version>${twitter.korean-text.version}</version>
         </dependency>
     </dependencies>
 
