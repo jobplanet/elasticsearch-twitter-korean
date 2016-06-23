@@ -39,8 +39,9 @@ public class TwitterKoreanStopFilterTest extends AnalyzerTestUtil {
         Map<String, String> stopWordDictionaryMap = Maps.newHashMap();
         stopWordDictionaryMap.put("the", null);
         stopWordDictionaryMap.put(".", null);
-
-        TokenStream stream = new TwitterKoreanStopFilter(new TwitterKoreanTokenizer(reader));
+        TwitterKoreanTokenizer koreanTokenizer = new TwitterKoreanTokenizer();
+        koreanTokenizer.setReader(reader);
+        TokenStream stream = new TwitterKoreanStopFilter(koreanTokenizer);
         stream.reset();
 
         List<TestToken> extractedTokens = collectExtractedNouns(stream);

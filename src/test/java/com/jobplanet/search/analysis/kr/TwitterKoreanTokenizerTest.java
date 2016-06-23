@@ -20,10 +20,11 @@ public class TwitterKoreanTokenizerTest extends AnalyzerTestUtil {
 
     private Set<TestToken> tokenizedToken = new HashSet<TestToken>();
     private StringReader content = new StringReader("나는 아이유가 좋아요.");
-    private TwitterKoreanTokenizer tokenizer = new TwitterKoreanTokenizer(content);
+    private TwitterKoreanTokenizer tokenizer = new TwitterKoreanTokenizer();
 
     @Before
     public void setUp() throws IOException {
+        tokenizer.setReader(content);
         tokenizedToken.add(getToken("나", 0, 1));
         tokenizedToken.add(getToken("는", 1, 2));
         tokenizedToken.add(getToken("아이유", 3, 6));

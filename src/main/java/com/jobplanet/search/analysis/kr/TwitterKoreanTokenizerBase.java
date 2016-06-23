@@ -6,9 +6,9 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 import org.apache.lucene.analysis.tokenattributes.TypeAttribute;
+import org.apache.lucene.util.AttributeFactory;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 
 /**
@@ -27,7 +27,9 @@ public abstract class TwitterKoreanTokenizerBase extends Tokenizer {
     protected TypeAttribute typeAtt;
     protected PositionIncrementAttribute positionAtt;
 
-    public TwitterKoreanTokenizerBase(Reader input) { super(input);}
+//    public TwitterKoreanTokenizerBase(Reader input) { super(input);}
+
+    public TwitterKoreanTokenizerBase(){super(AttributeFactory.DEFAULT_ATTRIBUTE_FACTORY);}
 
     @Override
     public final void end() throws IOException {

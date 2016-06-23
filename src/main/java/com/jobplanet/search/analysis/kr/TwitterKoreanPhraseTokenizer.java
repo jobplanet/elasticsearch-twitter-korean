@@ -10,7 +10,6 @@ import org.apache.lucene.analysis.tokenattributes.TypeAttribute;
 import scala.collection.Seq;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 
 /**
@@ -20,8 +19,7 @@ public final class TwitterKoreanPhraseTokenizer extends TwitterKoreanTokenizerBa
 
     private List<KoreanPhraseExtractor.KoreanPhrase> tokenList;
 
-    public TwitterKoreanPhraseTokenizer(Reader input) {
-        super(input);
+    public TwitterKoreanPhraseTokenizer() {
         termAtt = addAttribute(CharTermAttribute.class);
         offsetAtt = addAttribute(OffsetAttribute.class);
         typeAtt = addAttribute(TypeAttribute.class);

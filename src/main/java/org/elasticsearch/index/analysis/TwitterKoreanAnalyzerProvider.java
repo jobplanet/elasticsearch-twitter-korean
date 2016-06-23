@@ -6,7 +6,7 @@ import org.elasticsearch.common.inject.assistedinject.Assisted;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.index.Index;
-import org.elasticsearch.index.settings.IndexSettings;
+import org.elasticsearch.index.settings.IndexSettingsService;
 
 import java.io.IOException;
 
@@ -18,8 +18,11 @@ public class TwitterKoreanAnalyzerProvider extends AbstractIndexAnalyzerProvider
     private final TwitterKoreanAnalyzer analyzer;
 
     @Inject
-    public TwitterKoreanAnalyzerProvider(Index index, @IndexSettings Settings indexSettings, Environment env, @Assisted String name, @Assisted Settings settings) throws IOException {
-        super(index, indexSettings, name, settings);
+    public TwitterKoreanAnalyzerProvider(Index index, IndexSettingsService indexSettingsService, Environment env,
+                                         @Assisted String name,
+                                         @Assisted Settings
+            settings) throws IOException {
+        super(index, indexSettingsService.getSettings(), name, settings);
         analyzer = new TwitterKoreanAnalyzer();
     }
 

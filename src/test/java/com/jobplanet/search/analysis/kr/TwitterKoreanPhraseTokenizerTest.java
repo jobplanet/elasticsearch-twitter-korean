@@ -20,10 +20,14 @@ public class TwitterKoreanPhraseTokenizerTest extends AnalyzerTestUtil {
 
     private Set<TestToken> tokenizedToken = new HashSet<TestToken>();
     private StringReader content = new StringReader("블랙프라이데이: 이날 미국의 수백만 소비자들은 크리스마스 선물을 할인된 가격에 사는 것을 주 목적으로 블랙프라이데이 쇼핑을 한다.");
-    private TwitterKoreanPhraseTokenizer tokenizer = new TwitterKoreanPhraseTokenizer(content);
+    private TwitterKoreanPhraseTokenizer tokenizer = new TwitterKoreanPhraseTokenizer();
+
 
     @Before
     public void setUp() throws IOException {
+
+        tokenizer.setReader(content);
+
         tokenizedToken.add(getToken("블랙프라이데이", 0, 7));
         tokenizedToken.add(getToken("이날", 9, 11));
         tokenizedToken.add(getToken("이날 미국", 9, 14));

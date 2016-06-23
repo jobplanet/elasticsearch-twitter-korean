@@ -9,15 +9,13 @@ import org.apache.lucene.analysis.tokenattributes.TypeAttribute;
 import scala.collection.Seq;
 
 import java.io.IOException;
-import java.io.Reader;
 
 /**
  * Created by hosang on 2015. 11. 5..
  */
 public final class TwitterKoreanTokenizer extends TwitterKoreanTokenizerBase {
 
-    public TwitterKoreanTokenizer(Reader input) {
-        super(input);
+    public TwitterKoreanTokenizer() {
         termAtt = addAttribute(CharTermAttribute.class);
         offsetAtt = addAttribute(OffsetAttribute.class);
         typeAtt = addAttribute(TypeAttribute.class);
